@@ -1,5 +1,7 @@
 # Hangman
 
+**NOTE: This code is buggy and not finished, it is very much a WIP**
+
 A primitive hangman game built in Python3.
 
 I created this program over summer so that I maintain my programming knowledge.
