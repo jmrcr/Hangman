@@ -13,3 +13,4 @@ My plan is to make this code more efficient and far less clunky as I expand my a
 - [ ] Complete the intructions page.
 - [ ] Remove the need for capitals.
 - [ ] Somepoint down the line rewrite using a class system.
+- [ ] General code cleaning.
