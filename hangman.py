@@ -5,6 +5,72 @@ import sys
 
 os.system("clear")
 
+HANGMAN = ["""
+
+
+
+
+
+
+           ""","""
+________
+|/     |
+|      0
+|     /|\\
+|      |
+|     / \\
+|__________
+""","""
+________
+|/     |
+|      0
+|     /|\\
+|      |
+|     /
+|__________
+""","""
+________
+|/     |
+|      0
+|     /|\\
+|      |
+|
+|__________
+""","""
+________
+|/     |
+|      0
+|     /|
+|      |
+|
+|__________
+""","""
+________
+|/     |
+|      0
+|      |
+|      |
+|
+|__________
+""","""
+________
+|/     |
+|      0
+|
+|
+|
+|__________
+""","""
+________
+|/     |
+|
+|
+|
+|
+|__________
+"""]
+
+
 hard=False
 normal=False
 easy=False
@@ -18,6 +84,10 @@ def showBanner():
     print("\_| |_/\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|     |     / \  ")
     print("                    __/ |                           |__________")
     print("                   |___/                                       ")
+
+def showHangman(HANGMAN, lives):
+    print(HANGMAN[lives])
+
 
 def difficulty():        #    This function decides which txt file it pulls a word from. Change this so that all words are in one file.
     diff=" "
@@ -66,12 +136,13 @@ def startGame(randWord):    #   Import the random word variable from above funct
     correct = list()        #   List to add correctinputs from user too
     global hard,normal,easy            #    Carrying the global difficulty variables into this function so correct unknown spaces are used **Not complete**
 #    print(len(a))              #   Testing lines
-    print(a)
+#    print(a)
 #    print(a[1])
-    lives = 6
+    lives = 7
     blanks = "_" * len(randWord)
 
-    while (lives > 0):              #   Recursive while loop, nested if statements used to decrese lives left or determine a win
+    while (lives > 1):             #   Recursive while loop, nested if statements used to decrese lives left or determine a win
+        showHangman(HANGMAN, lives)
         guess = input("Have a guess:")
         if len(guess) != 1:
             print("Please enter a single letter!\n")
@@ -81,7 +152,7 @@ def startGame(randWord):    #   Import the random word variable from above funct
             if guess in a:
                 if guess not in correct:
                     correct.append(guess)       #    Adds the guess varible to the correct list if it meets all the conditions
-                    print(correct)
+#                    print(correct)
                     for i in range(len(randWord)):      #   Replaces blanks with correct guesses
                         if randWord[i] in correct:
                             blanks = blanks[:i] + randWord[i] + blanks[i+1:]
@@ -97,8 +168,17 @@ def startGame(randWord):    #   Import the random word variable from above funct
             else:
                 lives=lives-1
                 print("Incorrect, you have",lives,"lives left :(")
-
-    loser=input("The correct word was {0} \nYou have lost, would you like to play again? (Y/n)\n".format(randWord))     #   Using the str.format to have multiple arguments in an input
+    os.system("clear")
+    print("""
+________
+|/     |
+|      0
+|     /|\\
+|      |
+|     / \\
+|__________
+""")
+    loser=input("The correct word was '{0}'. \nYou have lost, would you like to play again? (Y/n)\n".format(randWord))     #   Using the str.format to have multiple arguments in an input
     if loser == "Y" or "y":
         hard=False
         normal=False
