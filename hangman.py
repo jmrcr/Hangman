@@ -66,33 +66,37 @@ def startGame(randWord):    #   Import the random word variable from above funct
     correct = list()        #   List to add correctinputs from user too
     global hard,normal,easy            #    Carrying the global difficulty variables into this function so correct unknown spaces are used **Not complete**
 #    print(len(a))              #   Testing lines
-#    print(a)
+    print(a)
 #    print(a[1])
     lives = 6
-    diffQuan = ""
-
-    if hard==True:
-        diffQuan="----------"
-    elif normal==True:
-        diffQuan="-----"
-    elif easy==True:
-        diffQuan="---"
+    blanks = "_" * len(randWord)
 
     while (lives > 0):              #   Recursive while loop, nested if statements used to decrese lives left or determine a win
         guess = input("Have a guess:")
-        if guess in a:
-            if guess not in correct:
-                correct.append(guess)       #    Adds the guess varible to the correct list if it meets all the conditions
-                print(correct)
-                print("Well done! Lives remaining:",lives)
-                if set(a).issubset(correct):        #   Checks if list(correct) contains all the characters used in randWord
-                        win()
-                        return
-            else:
-                print("You have already input this character!")
+        if len(guess) != 1:
+            print("Please enter a single letter!\n")
+        elif guess not in 'abcdefghijklmnopqrstuvwxyz':
+            print("Please enter an alphabetic character!")
         else:
-            lives=lives-1
-            print("Incorrect, you have",lives,"lives left :(")
+            if guess in a:
+                if guess not in correct:
+                    correct.append(guess)       #    Adds the guess varible to the correct list if it meets all the conditions
+                    print(correct)
+                    for i in range(len(randWord)):      #   Replaces blanks with correct guesses
+                        if randWord[i] in correct:
+                            blanks = blanks[:i] + randWord[i] + blanks[i+1:]
+                    for letter in blanks:
+                        print(letter, end='')
+                    print()
+                    print("Well done! Lives remaining:",lives)
+                    if set(a).issubset(correct):        #   Checks if list(correct) contains all the characters used in randWord
+                            win()
+                            return
+                else:
+                    print("You have already input this character!")
+            else:
+                lives=lives-1
+                print("Incorrect, you have",lives,"lives left :(")
 
     loser=input("The correct word was {0} \nYou have lost, would you like to play again? (Y/n)\n".format(randWord))     #   Using the str.format to have multiple arguments in an input
     if loser == "Y" or "y":
