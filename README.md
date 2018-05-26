@@ -16,3 +16,5 @@ My plan is to make this code more efficient and far less clunky as I expand my a
 - [ ] Remove the need for capitals.
 - [ ] Somepoint down the line rewrite using a class system.
 - [ ] General code cleaning.
+- [x] More specific parameters for entering a character (must be single character, must be alphabetic).
+- [x] Implement a visual aid for where the correct guess letter goes in the word. e.g. randWord = 'else', guess = e, 'e___' is printed.
