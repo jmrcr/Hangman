@@ -12,9 +12,10 @@ My plan is to make this code more efficient and far less clunky as I expand my a
 
 - [x] Make the game process with basic functionality.
 - [x] Implement visual aid (the hangman ASCII art).
-- [ ] Complete the intructions page.
-- [ ] Remove the need for capitals.
-- [ ] Somepoint down the line rewrite using a class system.
-- [ ] General code cleaning.
+- [x] Complete the intructions page.
+- [x] Remove the need for capitals.
 - [x] More specific parameters for entering a character (must be single character, must be alphabetic).
 - [x] Implement a visual aid for where the correct guess letter goes in the word. e.g. randWord = 'else', guess = e, 'e___' is printed.
+- [ ] Use one word list instead of three.
+- [ ] Somepoint down the line rewrite using a class system.
+- [ ] General code cleaning.
