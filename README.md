@@ -11,7 +11,7 @@ My plan is to make this code more efficient and far less clunky as I expand my a
 (I have only recently learnt how to code in this language - it being my first - so please excuse any poor etiquette!)
 
 - [x] Make the game process with basic functionality.
-- [ ] Implement visual aid (the hangman ASCII art).
+- [x] Implement visual aid (the hangman ASCII art).
 - [ ] Complete the intructions page.
 - [ ] Remove the need for capitals.
 - [ ] Somepoint down the line rewrite using a class system.
