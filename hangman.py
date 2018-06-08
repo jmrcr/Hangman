@@ -69,7 +69,7 @@ ________
 |__________
 ""","""
 ________
-|/     
+|/
 |
 |
 |
@@ -131,13 +131,25 @@ def difficulty():        #    This function decides which txt file it pulls a wo
 def randWordGen():       #   Function uses the random module to pick a word from the precified txt file.
     os.system("clear")
     if hard==True:
-        randWord = random.choice(open("/home/a/Documents/Hangman/10word.txt").read().split())
+#        randWord = random.choice(open("/home/a/Documents/Hangman/wordList.txt").read().split(',')[6])
+        lines = open("/home/a/Documents/Hangman/wordList.txt").readlines()
+        line = lines[4]
+        words = line.split(', ')
+        randWord = random.choice(words)
         startGame(randWord)
     elif normal==True:
-        randWord = random.choice(open("/home/a/Documents/Hangman/5word.txt").read().split())
+#        randWord = random.choice(open("/home/a/Documents/Hangman/wordList.txt").read().split(', ')[3])
+        lines = open("/home/a/Documents/Hangman/wordList.txt").readlines()
+        line = lines[2]
+        words = line.split(', ')
+        randWord = random.choice(words)
         startGame(randWord)
     elif easy==True:
-        randWord = random.choice(open("/home/a/Documents/Hangman/3word.txt").read().split())
+#        randWord = random.choice(open("/home/a/Documents/Hangman/wordList.txt").read().split(', ')[1])
+        lines = open("/home/a/Documents/Hangman/wordList.txt").readlines()
+        line = lines[0]
+        words = line.split(', ')
+        randWord = random.choice(words)
         startGame(randWord)
     else:
         print("ERROR")
