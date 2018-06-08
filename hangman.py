@@ -191,9 +191,11 @@ def startGame(randWord):    #   Import the random word variable from above funct
                     print("You have already input this character!")
             else:
                 if guess not in incorrect:
+                    for letter in blanks:
+                        print(letter, end='')
                     incorrect.append(guess)
                     lives=lives-1
-                    print("Incorrect, you have",lives,"lives left :(")
+                    print("\nIncorrect, you have",lives,"lives left :(")
                 else:
                     print("You have already input this character!")
 
