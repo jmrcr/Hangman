@@ -16,7 +16,7 @@ My plan is to make this code more efficient and far less clunky as I expand my a
 - [x] Remove the need for capitals.
 - [x] More specific parameters for entering a character (must be single character, must be alphabetic).
 - [x] Implement a visual aid for where the correctly guessed letter show it's position within the word. e.g. randWord = 'foo', guess = o, '_oo' is printed.
-- [ ] Use one word list instead of three.
+- [x] Use one word list instead of three.
 - [ ] When user enters an incorrect character ensure that the partial word still displays.
-- [ ] Somepoint down the line rewrite using a class system.
 - [ ] General code cleaning.
+- [ ] Somepoint down the line rewrite using a class system.
