@@ -2,7 +2,7 @@
 
 **NOTE: This code is buggy and not finished, it is very much a WIP**
 
-A primitive hangman game built in Python3.
+A primitive hangman game built in Python3. It emcompasses an approximate 29,343 words which essentially makes up ~17.190311% of all words. I have pulled these from a censored wordlist but I am not accountable for you reading some naughty words should some have fallen through the cracks.
 
 I created this program over the summer to help me become more proficient in python but also to use as a later benchmark to notice how my coding habits change.
 
