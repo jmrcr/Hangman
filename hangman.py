@@ -1,3 +1,10 @@
+"""
+-------------------------------------------------------
+| Written by Joseph Mercer; released to public domain |
+-------------------------------------------------------
+"""
+
+
 import random
 import os
 import time
@@ -13,14 +20,6 @@ HANGMAN = ["""
 
 
            ""","""
-________
-|/     |
-|      0
-|     /|\\
-|      |
-|     / \\
-|__________
-""","""
 ________
 |/     |
 |      0
@@ -68,6 +67,14 @@ ________
 |
 |
 |__________
+""","""
+________
+|/     
+|
+|
+|
+|
+|__________
 """]
 
 
@@ -84,6 +91,7 @@ def showBanner():
     print("\_| |_/\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|     |     / \  ")
     print("                    __/ |                           |__________")
     print("                   |___/                                       ")
+    print("\nA command line game created by @jmrcr.\n")
 
 def showHangman(HANGMAN, lives):
     print(HANGMAN[lives])
@@ -99,17 +107,20 @@ def difficulty():        #    This function decides which txt file it pulls a wo
         global easy
 
         diff=input("Please select your difficulty setting:\n\n        Hard - Normal - Easy\n\n")
-        if diff== "Hard":
+        if diff.upper()== "HARD":
             hard=True
             randWordGen()
             return
-        elif diff== "Normal":
+        elif diff.upper()== "NORMAL":
             normal=True
             randWordGen()
             return
-        elif diff== "Easy":
+        elif diff.upper()== "EASY":
             easy=True
             randWordGen()
+            return
+        elif diff.upper()== "BACK":
+            begin()
             return
         else:
             os.system("clear")
@@ -133,15 +144,16 @@ def randWordGen():       #   Function uses the random module to pick a word from
 
 def startGame(randWord):    #   Import the random word variable from above function.
     a = list(randWord)      #   Turns the random word into a list
-    correct = list()        #   List to add correctinputs from user too
+    correct = list()        #   List to add correct inputs from user too
+    incorrect = list()
     global hard,normal,easy            #    Carrying the global difficulty variables into this function so correct unknown spaces are used **Not complete**
 #    print(len(a))              #   Testing lines
 #    print(a)
 #    print(a[1])
-    lives = 7
+    lives = len(HANGMAN) - 1
     blanks = "_" * len(randWord)
 
-    while (lives > 1):             #   Recursive while loop, nested if statements used to decrese lives left or determine a win
+    while (lives > 0):             #   Recursive while loop, nested if statements used to decrese lives left or determine a win
         showHangman(HANGMAN, lives)
         guess = input("Have a guess:")
         if len(guess) != 1:
@@ -166,8 +178,13 @@ def startGame(randWord):    #   Import the random word variable from above funct
                 else:
                     print("You have already input this character!")
             else:
-                lives=lives-1
-                print("Incorrect, you have",lives,"lives left :(")
+                if guess not in incorrect:
+                    incorrect.append(guess)
+                    lives=lives-1
+                    print("Incorrect, you have",lives,"lives left :(")
+                else:
+                    print("You have already input this character!")
+
     os.system("clear")
     print("""
 ________
@@ -179,20 +196,45 @@ ________
 |__________
 """)
     loser=input("The correct word was '{0}'. \nYou have lost, would you like to play again? (Y/n)\n".format(randWord))     #   Using the str.format to have multiple arguments in an input
-    if loser == "Y" or "y":
+    if loser.upper() == "Y":
         hard=False
         normal=False
         easy=False
         begin()
-    elif loser == "N" or "n":
+    elif loser.upper() == "N":
         sys.exit()
 
 def win():
-    print("Winner")
+    global hard,normal,easy
+    if hard == True:
+        difficulty = "hardest"
+    elif normal == True:
+        difficulty = "most mediocre"
+    elif easy == True:
+        difficulty = "easiest"
+
+    again=input("\nWinner!!! Congratulations you beat the {0} level!\n\nTest your mind and try again?(Y/n)".format(difficulty))
+    if again.upper() == "Y":
+        begin()
+    elif again.upper() == "N":
+        sys.exit()
 
 def instructions():     #   Simply an instrutions page for those less informed
-    menu=input("You're now reading the instructions\n\nTo go back to the menu just type 'Back'\n")
-    if menu == "Back":
+    menu=input("""Welcome to my hangman game, I have written this in python.
+
+To play the game you simply need to type '1' in order to initiate the game.
+After this you will be prompted to choose a difficulty. Select the desired
+diffiulty level by typing it into the command line. Depending on your
+chosen difficulty level a random word of corresponding difficulty will be
+selected. From here you must try and guess said word correctly, letter by
+letter before your lil stick man kicks the bucket..
+
+Good luck
+
+To go back to the menu just type 'Back'
+
+""")
+    if menu.upper() == "BACK":
         begin()
     else:
         print("Unknown Option")
