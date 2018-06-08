@@ -4,7 +4,7 @@
 
 A primitive hangman game built in Python3.
 
-I created this program over summer so that I maintain my programming knowledge.
+I created this program over the summer to help me become more proficient in python but also to use as a later benchmark to notice how my coding habits change.
 
 My plan is to make this code more efficient and far less clunky as I expand my ability to program in Python3.
 
